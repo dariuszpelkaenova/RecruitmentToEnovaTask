@@ -5,12 +5,12 @@ using System.Text;
 
 namespace GitRepository.Model
 {
-    public class GitCommit
+    public class CommitsPerDayPerUser
     {
         public string UserName { get; set; }
 
-        public DateTime? Created { get; set; }
+        public int NumberOfCommits { get; set; }
 
-        public string CommitId { get; set; }
+        public DateTime OnDate { get; set; }
     }
 }

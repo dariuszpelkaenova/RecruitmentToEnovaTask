@@ -43,5 +43,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GitRepository\GitRepository.csproj">
+      <Project>{43e38b14-73f2-48d7-b789-a9ee08b952e2}</Project>
+      <Name>GitRepository</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

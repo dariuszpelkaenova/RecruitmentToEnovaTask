@@ -2,13 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GitRepository.Model;
 
 namespace GitRepository
 {
     public interface IGitRepositoryAccess
     {
-        int GetNumberOfCommitsForUserOnDate(DateTime date, int userId);
+        string GitUserName
+        {
+            get;
+            set;
+        }
 
-        int GetAverageNumberOfCommitsForUserOnDate(int userId);
+        string GitProjectName
+        {
+            get;
+            set;
+        }
+
+        IEnumerable<CommitsPerDayPerUser> GetNumberOfCommitsForUsers();
+
+        IEnumerable<AverageNumberOfDailyCommits> GetAverageNumberOfCommitsForUsers();
     }
 }
