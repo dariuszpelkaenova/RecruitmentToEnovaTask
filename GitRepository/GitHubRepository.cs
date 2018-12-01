@@ -11,8 +11,8 @@ namespace GitRepository
 {
     public class GitHubRepository : IGitRepositoryAccess
     {
-        private string _gitUserName = "dariuszpelkaenova";
-        private string _gitProjectName = "SampleProject";
+        private string _gitUserName = "";
+        private string _gitProjectName = "";
 
         public string GitUserName
         {
@@ -37,6 +37,10 @@ namespace GitRepository
             {
                 _gitProjectName = value;
             }
+        }
+
+        public GitHubRepository()
+        {
         }
 
         public GitHubRepository(string gitUserName, string gitProjectName)
@@ -94,7 +98,7 @@ namespace GitRepository
                 result.Add(item.commit.sha.ToString());
             }
             }
-            catch
+            catch(Exception exc)
             {
                 ;//Dodać logowanie
                 throw new Exception("Problem z pobraniem informacji o branchach");

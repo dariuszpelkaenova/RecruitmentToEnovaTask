@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GitRepository;
+using Newtonsoft.Json;
 
 namespace IntegrationConsoleEnovaApplication
 {
@@ -15,10 +16,15 @@ namespace IntegrationConsoleEnovaApplication
             var gitRepository = new GitHubRepository(gitUserName, gitProjectName);
             Console.WriteLine("GetNumberOfCommitsForUsers");
             var commitsListPerDay = gitRepository.GetNumberOfCommitsForUsers();
-            Console.WriteLine(commitsListPerDay.ToList().ToString());
+            var json = JsonConvert.SerializeObject(commitsListPerDay);
+            Console.WriteLine(json);
+
             Console.WriteLine("GetAverageNumberOfCommitsForUsers");
             var averageNumberOfCommitsListPerDay = gitRepository.GetAverageNumberOfCommitsForUsers();
-            Console.WriteLine(averageNumberOfCommitsListPerDay.ToList().ToString());
+            json = JsonConvert.SerializeObject(averageNumberOfCommitsListPerDay);
+            Console.WriteLine(json);
+
+            Console.ReadLine();
         }
     }
 }
