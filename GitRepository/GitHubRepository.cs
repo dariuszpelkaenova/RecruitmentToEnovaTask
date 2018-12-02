@@ -40,7 +40,7 @@ namespace GitRepository
         }
 
         private IGitHubDataProvider _dataProvider;
-        
+
         public GitHubRepository(IGitHubDataProvider dataProvider)
         {
             _dataProvider = dataProvider;

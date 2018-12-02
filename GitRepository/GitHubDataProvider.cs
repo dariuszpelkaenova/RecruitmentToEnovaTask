@@ -10,7 +10,12 @@ namespace GitRepository
     {
         public string GetBranches(string gitUserName, string gitProjectName)
         {
-            return "";
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+            var client = new WebClient();
+            client.Headers.Add("user-agent", "CustomApp");
+            var url = $"https://api.github.com/repos/{gitUserName}/{gitProjectName}/branches";
+            var response = client.DownloadString(url);
+            return response;
         }
 
         public string GetCommits(string gitUserName, string gitProjectName, string branchId)
