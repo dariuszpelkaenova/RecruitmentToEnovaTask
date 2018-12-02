@@ -42,7 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GitHubDataProvider.cs" />
     <Compile Include="GitHubRepository.cs" />
+    <Compile Include="IGitHubDataProvider.cs" />
     <Compile Include="IGitRepositoryAccess.cs" />
     <Compile Include="Model\AverageNumberOfDailyCommits.cs" />
     <Compile Include="Model\CommitsPerDayPerUser.cs" />

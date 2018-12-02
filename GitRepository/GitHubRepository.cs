@@ -39,8 +39,11 @@ namespace GitRepository
             }
         }
 
-        public GitHubRepository()
+        private IGitHubDataProvider _dataProvider;
+        
+        public GitHubRepository(IGitHubDataProvider dataProvider)
         {
+            _dataProvider = dataProvider;
         }
 
         public GitHubRepository(string gitUserName, string gitProjectName)
@@ -86,13 +89,16 @@ namespace GitRepository
             List<string> result = new List<string>();
             try
             {
-
-            ServicePointManager.SecurityProtocol =   (SecurityProtocolType)3072;
+            /*ServicePointManager.SecurityProtocol =   (SecurityProtocolType)3072;
             var client = new WebClient();
             client.Headers.Add("user-agent", "CustomApp");
             var url = $"https://api.github.com/repos/{GitUserName}/{GitProjectName}/branches";
             var response = client.DownloadString(url);
+            */
+
+            var response = _dataProvider.GetBranches(GitUserName, GitProjectName);
             dynamic json = JToken.Parse(response);
+
             foreach (dynamic item in json)
             {
                 result.Add(item.commit.sha.ToString());
@@ -113,11 +119,13 @@ namespace GitRepository
 
             try
             {
-                ServicePointManager.SecurityProtocol = (SecurityProtocolType) 3072;
+                /*ServicePointManager.SecurityProtocol = (SecurityProtocolType) 3072;
                 var client = new WebClient();
                 client.Headers.Add("user-agent", "CustomApp");
                 var url = $"https://api.github.com/repos/{GitUserName}/{GitProjectName}/commits?sha={branchSha}";
                 var response = client.DownloadString(url);
+                */
+                var response = _dataProvider.GetCommits(GitUserName, GitProjectName, branchSha);
                 dynamic json = JToken.Parse(response);
 
                 foreach (dynamic item in json)
