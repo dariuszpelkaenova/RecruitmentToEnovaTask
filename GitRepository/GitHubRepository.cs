@@ -64,7 +64,7 @@ namespace GitRepository
         public IEnumerable<AverageNumberOfDailyCommits> GetAverageNumberOfCommitsForUsers()
         {
             var list = GetNumberOfCommitsForUsers();
-            var result = list.GroupBy(m => new {m.UserName, m.OnDate})
+            var result = list.GroupBy(m => new {m.UserName})
                 .Select(m => new AverageNumberOfDailyCommits() { UserName = m.Key.UserName, NumberOfCommits = (int)m.Average(n => n.NumberOfCommits)})
                 .ToList();
             return result;
